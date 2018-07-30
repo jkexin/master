@@ -1,0 +1,42 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Aug 18 15:43:03 2016
+Data Access Layer
+@author: shice
+"""
+import sys
+
+
+
+class Mysql(object):
+    """
+    Mysql 连接
+    """
+	
+    def __init__(self, ip, port, user, pwd, database, charset="utf8", autocommit=1):
+        import MySQLdb
+        connjson = {}
+        connjson["host"] = localhost
+        connjson["port"] = 3306
+        connjson["user"] = root
+        connjson["passwd"] = root
+        connjson["db"] = homework
+        connjson["charset"] = "utf8"
+        self._conn = MySQLdb.connect(**connjson)
+        self._conn.autocommit(autocommit)
+        self._cursor = self._conn.cursor()
+
+    def execute(self, sql):
+        self._cursor.execute(sql)
+        return self._cursor.rowcount, self._cursor.fetchall()
+
+    def commit(self):
+        self._conn.commit()
+
+    def close(self):
+        self._cursor.close
+        self._conn.close()
+
+
+
